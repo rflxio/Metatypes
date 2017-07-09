@@ -1,0 +1,52 @@
+{
+  "name": "metatypes",
+  "version": "1.0.0",
+  "description": "This project is aimed at providing well described runtime type information",
+  "main": "Metatypes.bundle.js",
+  "jsnext:main": "index.js",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "nyc --include lib/**/*.ts --extension .ts --require ts-node/register mocha test/**/*.spec.ts && shx rm -rf ./coverage",
+    "test:watch": "mocha -w --compilers ts:ts-node/register test/**/*.spec.ts",
+    "test:debug": "mocha -w --inspect --debug-brk --compilers ts:ts-node/register test/**/*.spec.ts",
+    "build": "rimraf dist && tsc -p tsconfig-esm.json && rollup -c rollup.config.js dist/index.js > dist/Metatypes.bundle.js && cp package.json dist && ts-node tools/cleanup.ts && cp README.md dist",
+    "lint": "tslint -c tslint.json lib/**/*.ts test/**/*.ts",
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Denis Yaremov/Metatypes.git"
+  },
+  "keywords": [
+    "Type Types Metadata Metatypes" 
+  ],
+  "author": "Denis Yaremov <denis.yaremov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lu4/Metatypes/issues"
+  },
+  "homepage": "https://github.com/lu4/Metatypes#readme",
+  "devDependencies": {
+    "@types/chai": "^3.4.35",
+    "@types/mocha": "^2.2.39",
+    "@types/node": "^7.0.5",
+    "chai": "^4.0.0",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.1.2",
+    "rimraf": "^2.6.0",
+    "rollup": "^0.41.4",
+    "shx": "^0.2.2",
+    "ts-node": "^3.0.4",
+    "tslint": "^5.3.2",
+    "typescript": "^2.1.6",
+    "reflect-metadata": "*"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
